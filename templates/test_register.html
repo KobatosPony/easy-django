@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register test</title>
+</head>
+<body>
+<form action="{% url 'test_reg' %}" method="post" enctype="multipart/form-data">
+    <span>用户名：</span><input type="text" name="username"><br><br>
+    <span>密码：</span><input type="password" name="password"><br><br>
+    <span>昵称：</span><input type="text" name="nickname"><br><br>
+    <span>头像：</span><input type="file" name="upload_file" id="upload_file"><br><br>
+    <input value="上传" type="submit">
+</form>
+</body>
+<script>
+        var test = document.getElementById('upload_file');
+        test.addEventListener('change', function() {
+            var t_files = this.files;
+            console.log(t_files);
+            var str = '';
+            for (var i = 0, len = t_files.length; i < len; i++) {
+                console.log(t_files[i]);
+                str += '<li style="list-style: none">名称：' + t_files[i].name;
+            }
+            document.getElementById('upload_file_tmp').innerHTML = str;
+        }, false);
+</script>
+</html>
