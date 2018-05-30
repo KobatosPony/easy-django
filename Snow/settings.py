@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Yuki.apps.YukiConfig',
+    'Spring.apps.SpringConfig'
 ]
 
 MIDDLEWARE = [
@@ -78,8 +79,12 @@ WSGI_APPLICATION = 'Snow.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'spring',       # 数据库名
+        'USER': 'root',       # 用户
+        'PASSWORD': '8844248', # 口令
+        'HOST': 'localhost',    # 地址
+        'POST': '3306',          # 端口
     },
     # mysql数据库的配置
     'mysql':{
@@ -93,7 +98,8 @@ DATABASES = {
 }
 
 DATABASE_APPS_MAPPING = {
-    'Yuki': 'mysql'
+    'Yuki': 'mysql',
+    'Spring': 'default'
 }
 
 # 配置数据库路由

@@ -14,9 +14,13 @@ class custom_router:
         return None
 
     def allow_relation(self, obj1, obj2, **hints):
-        if obj1._meta.app_label == 'auth' or \
-                obj2._meta.app_label == 'auth':
-            return True
+        obj1 = settings.DATABASE_APPS_MAPPING.get(obj1._meta.app_label)
+        obj2 = settings.DATABASE_APPS_MAPPING.get(obj2._meta.app_label)
+        if obj1 and obj2:
+            if obj1 == obj2:
+                return True
+            else:
+                return False
         return None
 
     def allow_migrate(self, db, app_label, model_name=None, **hints):
