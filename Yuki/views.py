@@ -3,7 +3,7 @@ from Yuki import models
 from django.db import transaction
 from django.http import FileResponse
 from django.conf import settings
-from django.core.cache import caches
+from django.core.cache import caches,cache
 
 def test(request):
     ret = {}

@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'Yuki.apps.YukiConfig',
     'Spring.apps.SpringConfig'
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -50,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'Snow.custom_middleware.custom_middleware'
 ]
 
 ROOT_URLCONF = 'Snow.urls'
@@ -106,10 +106,18 @@ DATABASE_APPS_MAPPING = {
 DATABASE_ROUTERS = ['Snow.custom_router.custom_router']
 
 # 使用内存缓存
+# CACHES = {
+#     'default':{
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#         'LOCATION': 'snow_rabbit'
+#     }
+# }
+
+# 使用文件缓存
 CACHES = {
     'default':{
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'snow_rabbit'
+        'BACKEND':'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION':os.path.join('filecache')
     }
 }
 
